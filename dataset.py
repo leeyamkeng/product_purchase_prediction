@@ -49,7 +49,7 @@ def import_data():
   # dataframe = pandas.read_csv('dataset/integrated_table.csv', engine = "python").values
   dataframe = processing()
 
-  # dataframe = dataframe.values
+  dataframe = dataframe.values
   # new_list = []
   # old_mcvisid = ''
   # old_time = ''
@@ -68,10 +68,10 @@ def import_data():
   #     old_mcvisid = dataframe[i][0]
   #     old_time = dataframe[i][1]
 
-  print ("new_list", np.array(new_list)[2])
+  # print ("new_list", np.array(new_list)[2])
   # exit()
 
-  dataset = np.array(new_list)
+  dataset = np.array(dataframe)
 
   # delete mcvisid and timestamp
   data_raw = np.delete(dataset, [0, 1], 1)
@@ -91,7 +91,6 @@ def import_data():
   input = np.delete(input, 0, 1)
   print ("input", input[2])
   print ("output", output[2])
-  exit()
 
   return input, np.array(labels)
 
