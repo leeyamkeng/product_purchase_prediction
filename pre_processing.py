@@ -39,10 +39,10 @@ def processing():
 	encoded_prodid = pd.get_dummies(df['prodid'])
 	df = df.join(encoded_prodid)
 
-	print ('df[1:5000]', df[1:5000]) # [4999 rows x 270 columns]
-	exit()
+	# print ('df[1:5000]', df[1:5000]) # [4999 rows x 12144 columns]
+	# exit()
 
-	return df[1:5000]
+	return df
 
 if __name__ == '__main__':
 	processing()

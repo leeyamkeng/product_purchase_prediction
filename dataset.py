@@ -69,15 +69,13 @@ def import_data():
       old_time = dataframe[i][1]
 
   print ("new_list", np.array(new_list)[2])
-  exit()
+  # exit()
 
   dataset = np.array(new_list)
 
   # delete mcvisid and timestamp
   data_raw = np.delete(dataset, [0, 1], 1)
-  print ("data_raw", data_raw[2])
-  products = getdiff(data_raw[:, 0])
-  print ('products', len(products))
+
   output = data_raw[:, 1]
   labels = []
   for i in range(len(output)):
@@ -90,10 +88,10 @@ def import_data():
   print ("input", input[2])
   print ("input.shape", input.shape)
   
-  global normalized_values
-  normalized_values = np.eye(len(products), dtype=int)
-  input = normalization(input, products)
   input = np.delete(input, 0, 1)
+  print ("input", input[2])
+  print ("output", output[2])
+  exit()
 
   return input, np.array(labels)
 
