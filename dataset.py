@@ -61,7 +61,7 @@ def import_data():
       if i == 0:
         continue
       else:
-        if pandas.isinstanceull(dataframe[i - 1][2]):
+        if pandas.isnull(dataframe[i - 1][2]):
           continue
         else:
           new_list.append(dataframe[i - 1])
