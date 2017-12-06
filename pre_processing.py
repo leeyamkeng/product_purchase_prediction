@@ -25,10 +25,10 @@ def processing():
 			if index == 0:
 				continue
 			else:
-				if pd.isnull(df[index - 1]['prodid']):
+				if pd.isnull(df.iloc[[index - 1]]['prodid']):
 					continue
 				else:
-					new_df.append(df[index - 1])
+					new_df.append(df.iloc[[index - 1]])
 			old_mcvisid = row['mcvisid']
 			old_time = row['visit_start_time_gmt']
 
