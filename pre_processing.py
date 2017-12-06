@@ -12,7 +12,27 @@ def isNaN(num):
 def processing():
 
 	df = pd.read_csv('dataset/prodhit_2017-11-02.gz', compression='gzip', usecols=['mcvisid', 'visit_start_time_gmt', 'prodid', 'shopcat', 'purchase'])
+	
+	# reduce the duplicated rows
+	new_df = pd.Dataframe(columns = ['mcvisid', 'visit_start_time_gmt', 'prodid', 'shopcat', 'purchase'])
+	old_mcvisid = ''
+	old_time = ''
+	for index, row in df.iterrows():
+		print ('index', index)
+		if row['mcvisid'] == old_mcvisid and row['visit_start_time_gmt'] == old_time:
+			pass
+		else:
+			if index == 0:
+				continue
+			else:
+				if pandas.isnull(df[index - 1]['prodid']):
+					continue
+				else:
+					new_df.append(df[index - 1])
+			old_mcvisid = row['mcvisid']
+			old_time = row['visit_start_time_gmt']
 
+	# convert the shopcats into high-levels
 	hl_cats = []
 	array_shopcat = df['shopcat']
 	for item in array_shopcat:
@@ -27,7 +47,6 @@ def processing():
 				hl_cats.append(splited_items[0] + '-' + splited_items[1])
 			else:
 				hl_cats.append(splited_items[0])
-	
 	df['hl_cats'] = hl_cats
 
 	encoded_shopcats = pd.get_dummies(df['hl_cats'])
