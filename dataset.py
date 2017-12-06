@@ -50,23 +50,23 @@ def import_data():
   dataframe = processing()
 
   # dataframe = dataframe.values
-  new_list = []
-  old_mcvisid = ''
-  old_time = ''
-  dataframe = dataframe.values
-  for i in range(len(dataframe)):
-    if dataframe[i][0] == old_mcvisid and dataframe[i][1] == old_time:
-      pass
-    else:
-      if i == 0:
-        continue
-      else:
-        if pandas.isnull(dataframe[i - 1][2]):
-          continue
-        else:
-          new_list.append(dataframe[i - 1])
-      old_mcvisid = dataframe[i][0]
-      old_time = dataframe[i][1]
+  # new_list = []
+  # old_mcvisid = ''
+  # old_time = ''
+  # dataframe = dataframe.values
+  # for i in range(len(dataframe)):
+  #   if dataframe[i][0] == old_mcvisid and dataframe[i][1] == old_time:
+  #     pass
+  #   else:
+  #     if i == 0:
+  #       continue
+  #     else:
+  #       if pandas.isnull(dataframe[i - 1][2]):
+  #         continue
+  #       else:
+  #         new_list.append(dataframe[i - 1])
+  #     old_mcvisid = dataframe[i][0]
+  #     old_time = dataframe[i][1]
 
   print ("new_list", np.array(new_list)[2])
   # exit()
