@@ -18,14 +18,13 @@ def processing():
 	old_mcvisid = ''
 	old_time = ''
 	for index, row in df.iterrows():
-		print ('index', index)
 		if row['mcvisid'] == old_mcvisid and row['visit_start_time_gmt'] == old_time:
 			pass
 		else:
 			if index == 0:
 				continue
 			else:
-				if pd.isnull(df.iloc[[index - 1]][2]):
+				if pd.isnull(df.iloc[index - 1]['prodid']):
 					continue
 				else:
 					new_df.append(df.iloc[[index - 1]])
