@@ -25,7 +25,7 @@ def processing():
 			if index == 0:
 				continue
 			else:
-				if pd.isnull(df.iloc[[index - 1]]['prodid']):
+				if pd.isnull(df.iloc[[index - 1]][2]):
 					continue
 				else:
 					new_df.append(df.iloc[[index - 1]])
