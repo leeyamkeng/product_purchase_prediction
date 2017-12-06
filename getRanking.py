@@ -3,7 +3,6 @@
 # @Last Modified by: Lee
 # @Last Modified time: 2017-10-25 13:41:23
 
-import matplotlib.pyplot as plt
 import tensorflow as tf
 import pandas as pd
 import numpy as np
@@ -14,7 +13,6 @@ import math
 import argparse
 import dataset
 import random
-import cv2
 import operator
 
 ap = argparse.ArgumentParser()

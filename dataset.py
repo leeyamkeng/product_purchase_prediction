@@ -7,7 +7,6 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 import glob
 import numpy as np
-import cv2
 import pandas
 from sklearn.utils import shuffle
 from pre_processing import processing
