@@ -3,7 +3,6 @@
 # @Last Modified by: Lee
 # @Last Modified time: 2017-10-26 16:50:12
 
-import matplotlib.pyplot as plt
 import tensorflow as tf
 import pandas as pd
 import numpy as np
@@ -186,11 +185,11 @@ train_batch_size = batch_size
 
 saver = tf.train.Saver()
 
-if os.path.isfile('models/model/model.ckpt.index'):
-	with tf.Session() as sess:
-		# Restore variables from disk.
-		saver.restore(session, "models/model/model.ckpt")
-		print("Model restored.")
+# if os.path.isfile('models/model/model.ckpt.index'):
+# 	with tf.Session() as sess:
+# 		# Restore variables from disk.
+# 		saver.restore(session, "models/model/model.ckpt")
+# 		print("Model restored.")
 
 def print_progress(epoch, feed_dict_train, feed_dict_validate, val_loss):
 	acc = session.run(accuracy, feed_dict = feed_dict_train)
