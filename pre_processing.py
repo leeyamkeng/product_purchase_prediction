@@ -14,7 +14,7 @@ def processing():
 	df = pd.read_csv('dataset/prodhit_2017-11-02.gz', compression='gzip', usecols=['mcvisid', 'visit_start_time_gmt', 'prodid', 'shopcat', 'purchase'])
 	
 	# reduce the duplicated rows
-	new_df = pd.Dataframe(columns = ['mcvisid', 'visit_start_time_gmt', 'prodid', 'shopcat', 'purchase'])
+	new_df = pd.DataFrame(columns = ['mcvisid', 'visit_start_time_gmt', 'prodid', 'shopcat', 'purchase'])
 	old_mcvisid = ''
 	old_time = ''
 	for index, row in df.iterrows():
