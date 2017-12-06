@@ -42,7 +42,7 @@ def processing():
 	# print ('df[1:5000]', df[1:5000]) # [4999 rows x 12144 columns]
 	# exit()
 
-	return df
+	return df[1:50000]
 
 if __name__ == '__main__':
 	processing()
