@@ -14,9 +14,9 @@ from pre_processing import processing
 # standardize name of teams
 def mapping(id, product):
   
-  global normalized_values
+  # global normalized_values
   # training dataset generation 
-  # normalized_values = np.eye(len(product), dtype=int)
+  normalized_values = np.eye(len(product), dtype=int)
   index = product.index(id)
   # row = np.zeros(len(product))
   # row[index] = 1
@@ -48,29 +48,7 @@ def import_data():
 
   # dataframe = pandas.read_csv('dataset/integrated_table.csv', engine = "python").values
   dataframe = processing()
-
   dataframe = dataframe.values
-  # new_list = []
-  # old_mcvisid = ''
-  # old_time = ''
-  # dataframe = dataframe.values
-  # for i in range(len(dataframe)):
-  #   if dataframe[i][0] == old_mcvisid and dataframe[i][1] == old_time:
-  #     pass
-  #   else:
-  #     if i == 0:
-  #       continue
-  #     else:
-  #       if pandas.isnull(dataframe[i - 1][2]):
-  #         continue
-  #       else:
-  #         new_list.append(dataframe[i - 1])
-  #     old_mcvisid = dataframe[i][0]
-  #     old_time = dataframe[i][1]
-
-  # print ("new_list", np.array(new_list)[2])
-  # exit()
-
   dataset = np.array(dataframe)
 
   # delete mcvisid and timestamp
@@ -96,43 +74,30 @@ def import_data():
 
 def import_test_data():
 
-  dataframe = pandas.read_csv('dataset/integrated_table.csv', engine = "python").values
+  dataframe = processing()
+  dataframe = dataframe.values
+  dataset = np.array(dataframe)
 
-  new_list = []
-  old_mcvisid = ''
-  old_time = ''
-  print ('dataset', dataframe.shape)
-  for i in range(int(len(dataframe) / 2)):
-    if dataframe[i][1] == old_mcvisid and dataframe[i][2] == old_time:
-      pass
-    else:
-      if i == 0:
-        continue
-      else:
-        if pandas.isnull(dataframe[i - 1][4]):
-          continue
-        else:
-          new_list.append(dataframe[i - 1])
-      old_mcvisid = dataframe[i][1]
-      old_time = dataframe[i][2]
+  validation_size = 0.1
+  if isinstance(validation_size, float):
+    validation_size = int(validation_size * dataset.shape[0])
 
-  print ("new_list.shape", np.array(new_list).shape)
-  dataset = np.array(new_list)
-
-  data_raw = np.delete(dataset, [0, 1, 2, 3, 5, 6, 8, dataset.shape[1] - 1, dataset.shape[1] - 2, dataset.shape[1] - 3, dataset.shape[1] - 4], 1)
-  products = getdiff(data_raw[:, 0])
+  dataset = dataset[validation_size:]
+  # delete mcvisid and timestamp
+  dataset = np.delete(dataset, [0, 1], 1)
+  products = getdiff(dataset[:, 0])
 
   products_list = []
   for i in range(len(products) - 1):
     pass
-    products_list.append(data_raw[np.where(data_raw[:, 0] == products[i])][0])
+    products_list.append(dataset[np.where(dataset[:, 0] == products[i])][0])
 
-  print ('products_list', np.array(products_list).shape)
+  print ('products_list', np.array(products_list)[2])
 
   products_list = np.delete(np.array(products_list), [1], 1)
 
-  products_list = normalization(products_list, products)
-  products_list = np.delete(products_list, 0, 1)
+  products_list = np.delete(products_list, [0], 1)
+  print ('products_list', products_list.shape)
 
   return products_list, products
 
