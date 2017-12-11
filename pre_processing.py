@@ -13,7 +13,7 @@ def processing():
 
 	df = pd.read_csv('dataset/prodhit_2017-11-02.gz', compression='gzip', usecols=['mcvisid', 'visit_start_time_gmt', 'prodid', 'shopcat', 'purchase'])
 	
-	df = df[1:200000]
+	# df = df[1:200000]
 	# reduce the duplicated rows
 	new_df = pd.DataFrame(columns = ['mcvisid', 'visit_start_time_gmt', 'prodid', 'shopcat', 'purchase'])
 	old_mcvisid = ''
@@ -58,7 +58,7 @@ def processing():
 	encoded_prodid = pd.get_dummies(df['prodid'])
 	df = df.join(encoded_prodid)
 
-	return df[1:50000]
+	# return df[1:50000]
 
 if __name__ == '__main__':
 	processing()
